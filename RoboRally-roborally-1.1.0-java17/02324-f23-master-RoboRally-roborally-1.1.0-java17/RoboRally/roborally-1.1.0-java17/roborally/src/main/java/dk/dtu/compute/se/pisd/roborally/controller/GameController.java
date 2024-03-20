@@ -44,6 +44,7 @@ public class GameController {
      *
      * @param space the space to which the current player should move
      * @author Rebecca Moss
+     * @author Amalie Bojsen
      * Maves the player from ons spce to the one prest, and shiftes to the next player
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {

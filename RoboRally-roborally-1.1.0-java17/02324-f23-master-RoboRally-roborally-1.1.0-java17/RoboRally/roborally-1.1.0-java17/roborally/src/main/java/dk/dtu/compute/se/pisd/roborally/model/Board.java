@@ -204,7 +204,7 @@ public class Board extends Subject {
 
     /**
      * @author Rebecca Moss
-     * @return String wiht Phase, Step counter and curent player
+     * @return String with Phase, Step counter and current player
      *
     * */
     public String getStatusMessage() {
