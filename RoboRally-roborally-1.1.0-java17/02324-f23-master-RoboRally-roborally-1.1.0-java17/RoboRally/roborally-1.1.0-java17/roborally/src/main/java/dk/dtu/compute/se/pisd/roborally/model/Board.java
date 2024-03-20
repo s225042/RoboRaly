@@ -51,6 +51,8 @@ public class Board extends Subject {
 
     private Player current;
 
+    private int counter = 0;
+
     private Phase phase = INITIALISATION;
 
     private int step = 0;
@@ -200,6 +202,11 @@ public class Board extends Subject {
         return getSpace(x, y);
     }
 
+    /**
+     * @author Rebecca Moss
+     * @return String wiht Phase, Step counter and curent player
+     *
+    * */
     public String getStatusMessage() {
         // This is actually a view aspect, but for making the first task easy for
         // the students, this method gives a string representation of the current
@@ -211,9 +218,12 @@ public class Board extends Subject {
         //      which is counted up every time a player makes a move; the
         //      status line should show the current player and the number
         //      of the current move!
+        counter ++;
         return "Phase: " + getPhase().name() +
                 ", Player = " + getCurrentPlayer().getName() +
-                ", Step: " + getStep();
+                ", Step: " + getStep() +
+                ", Counter;" + (counter-1);
+
 
         // TODO Task1: add a counter along with a getter and a setter, so the
         //      state of the board (game) contains the number of moves, which then can
