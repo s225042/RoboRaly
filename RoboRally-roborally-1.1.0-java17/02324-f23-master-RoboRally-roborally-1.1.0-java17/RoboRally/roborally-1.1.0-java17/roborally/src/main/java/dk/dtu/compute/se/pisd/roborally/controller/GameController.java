@@ -43,7 +43,7 @@ public class GameController {
      * happening on the board. This method should eventually be deleted!
      *
      * @param space the space to which the current player should move
-     * @author Rebecca Moss
+     * @author Rebecca Moss s225042, Amalie Bojsen s235119
      * Maves the player from ons spce to the one prest, and shiftes to the next player
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {

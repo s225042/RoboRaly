@@ -204,7 +204,7 @@ public class Board extends Subject {
     }
 
     /**
-     * @author Rebecca Moss
+     * @author Rebecca Moss s225042
      * @return String with Phase, Step counter and current player
      *
     * */
