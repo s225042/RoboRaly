@@ -43,6 +43,8 @@ public class GameController {
      * happening on the board. This method should eventually be deleted!
      *
      * @param space the space to which the current player should move
+     * @author Rebecca Moss s225042, Amalie Bojsen s235119
+     * Maves the player from ons spce to the one prest, and shiftes to the next player
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
         // TODO Task1: method should be implemented by the students:
@@ -52,6 +54,21 @@ public class GameController {
         //     following the current player
         //   - the counter of moves in the game should be increased by one
         //     if the player is moved
+        if(space.getPlayer() == null){
+            Player curent;
+            space.setPlayer(space.board.getCurrentPlayer());
+            int playerNumber = space.board.getPlayerNumber(space.board.getCurrentPlayer())+1;
+            if(playerNumber >= space.board.getPlayersNumber()){
+                curent = space.board.getPlayer(0);
+            }
+            else {
+                curent = space.board.getPlayer(playerNumber);
+            }
+            space.board.setCurrentPlayer(curent);
+
+        }
+
+
 
     }
 
@@ -196,23 +213,86 @@ public class GameController {
     }
 
     // TODO Task2
+    /**
+     * This function makes it possible to move the player forward, by taking the current player
+     * position and heading and moves forward in heading of the player by knowing its x and y coordinates
+     *
+     * @auhtor: Tobias Kolstrup Vittrup s235112, Dennis Eren Dogulu s235074
+     *
+     * @param player
+     */
     public void moveForward(@NotNull Player player) {
+        Space currentposition = player.getSpace();
 
+        int x = currentposition.x;
+        int y = currentposition.y;
+
+        int newX = 0;
+        int newY = 0;
+
+        switch (player.getHeading()) {
+            case NORTH:
+                newX = x;
+                newY = (y - 1) % board.height;
+                break;
+
+            case EAST:
+                newX = (x + 1) % board.width;
+                newY = y;
+
+                break;
+            case SOUTH:
+                newX = x;
+                newY = (y + 1) % board.height;
+
+                break;
+            case WEST:
+                newX = (x - 1) % board.width;
+                newY = y;
+        }
+
+        Space newPostion = board.getSpace(newX, newY);
+        if (newPostion != null && newPostion.getPlayer() == null) {
+            newPostion.setPlayer(player);
+        }
     }
 
     // TODO Task2
+    /**
+     * This calls the moveForward twice to fastforward
+     *
+     * @auhtor: Tobias Kolstrup Vittrup s235112, Dennis Eren Dogulu s235074
+     *
+     * @param player
+     */
     public void fastForward(@NotNull Player player) {
+        moveForward(player);
+        moveForward(player);
 
     }
 
     // TODO Task2
+    /**
+     * This will move the player to the right in relative to its current direction
+     *
+     *@auhtor: Tobias Kolstrup Vittrup s235112, Dennis Eren Dogulu s235074
+     *
+     * @param player
+     */
     public void turnRight(@NotNull Player player) {
-
+        player.setHeading(player.getHeading().next());
     }
 
     // TODO Task2
+    /**
+     *
+     * This will move the player to the left in relative to its current direction
+    * @auhtor: Tobias Kolstrup Vittrup s235112, Dennis Eren Dogulu s235074
+    *
+    * @param player
+     */
     public void turnLeft(@NotNull Player player) {
-
+        player.setHeading(player.getHeading().prev());
     }
 
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
